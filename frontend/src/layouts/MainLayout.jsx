@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Menu from '../components/Menu';
 
-export default function MainLayout() {
+export default function MainLayout({
+  children,
+}) {
+  const [menuVisible, setMenuVisible] = useState(true);
+
   return <div
     style={{
       display: 'flex',
@@ -10,7 +15,9 @@ export default function MainLayout() {
       minHeight: '100vh',
     }}
   >
-    <Header />
+    <Header
+      onClickMenu={() => setMenuVisible(!menuVisible)}
+    />
     
     <div
       className="body"
@@ -20,7 +27,9 @@ export default function MainLayout() {
         flexDirection: 'row',
       }}
     >
-      <Menu />
+      <Menu
+        visible={menuVisible}
+      />
 
       <main
         style={{
@@ -28,7 +37,7 @@ export default function MainLayout() {
           backgroundColor: 'lightgreen',
         }}
       >
-        Content goes here
+        {children}
       </main>
     </div>
 

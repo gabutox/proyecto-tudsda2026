@@ -4,6 +4,6 @@ export default function Footer() {
       backgroundColor: 'yellow',
     }}
   >
-    Footer
+    Pagina creada por Gabu Alaniz
   </footer>;
 }

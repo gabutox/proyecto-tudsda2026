@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 import config from "./config.js";
 import { createRouter } from "./api/router.js";
 import "./dependencies.js";
@@ -13,6 +14,7 @@ import logMiddleware from "./middlewares/log_middleware.js";
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 app.use(checkAuthorizationTokenMiddleware);
 app.use(logMiddleware);
 

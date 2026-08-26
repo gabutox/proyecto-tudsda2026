@@ -3,17 +3,26 @@ import { useNavigate } from 'react-router-dom';
 import Form from '../components/Form';
 import TextField from '../components/TextField';
 import SecretField from '../components/SecretField';
+import useLogin from '../services/useLogin';
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useLogin();
   const [data, setData] = useState({
     username: '',
     password: '',
   });
 
-  function submitHandler(e) {
+  async function submitHandler(e) {
     e.preventDefault();
-    console.log(data);
+
+    try {
+      const res = await login(data);
+      console.log(res);
+      alert('Login exitoso');
+    } catch (error) {
+      alert('Error en el login.');
+    }
   }
 
   function cancelHandler() {
